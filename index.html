@@ -10,52 +10,29 @@
         body {
             margin: 0;
             padding: 0;
-            /* GANTI URL DI BAWAH UNTUK BACKGROUND SENDIRI */
-            background: url('link_background_kamu.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background-color: #f4f4f4;
+            /* Tekstur kertas halus */
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); 
             font-family: 'Cormorant Garamond', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Membuat konten di tengah layar secara vertikal */
             min-height: 100vh;
-            overflow: hidden; /* Mencegah scroll karena bunga atau tombol lari */
+            overflow-x: hidden;
             color: #444;
         }
 
-        /* Overlay halus agar teks tetap terbaca meskipun background ramai */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255, 255, 255, 0.2); 
-            z-index: -1;
-        }
-
-        /* Dekorasi Bunga PNG */
-        .flower {
-            position: absolute;
-            width: 150px; /* Sesuaikan ukuran bunga */
-            z-index: 0;
-            pointer-events: none; /* Agar tidak menghalangi klik tombol */
-            opacity: 0.8;
-        }
-        .flower-1 { top: -20px; left: -20px; transform: rotate(-15deg); }
-        .flower-2 { bottom: -20px; right: -20px; transform: rotate(15deg); }
-
         .container {
             max-width: 600px;
-            width: 100%;
             text-align: center;
-            padding: 20px;
+            padding: 50px 20px;
             position: relative;
-            z-index: 1;
         }
 
         h1 {
-            font-size: clamp(3rem, 15vw, 4.5rem); /* Responsive font size */
-            color: #5a8ab1;
-            margin-bottom: 0px;
+            font-size: 4.5rem;
+            color: #5a8ab1; /* Biru sesuai gambar */
+            margin-bottom: 5px;
             font-weight: 500;
             letter-spacing: -2px;
         }
@@ -63,89 +40,120 @@
         .subtitle {
             font-family: 'Shadows Into Light', cursive;
             font-size: 1.3rem;
-            margin-bottom: 30px;
-            color: #666;
+            margin-bottom: 40px;
+            color: #777;
         }
 
-        /* Container Galeri */
+        /* Container Galeri ala Scrapbook */
         .gallery {
             position: relative;
-            height: 350px; /* Dikecilkan sedikit agar pas di layar HP */
+            height: 500px;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .polaroid {
             position: absolute;
             background: white;
-            padding: 8px 8px 25px 8px;
-            box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
-            width: 110px; /* Ukuran HP friendly */
-            transition: transform 0.3s ease;
+            padding: 10px 10px 35px 10px;
+            box-shadow: 3px 5px 15px rgba(0,0,0,0.15);
+            width: 160px;
+            transition: transform 0.3s ease, z-index 0.3s;
             border: 1px solid #ddd;
         }
 
         .polaroid img {
             width: 100%;
-            height: 110px;
+            height: 160px;
             object-fit: cover;
             display: block;
         }
 
-        /* Posisi Foto (Disesuaikan untuk layar kecil) */
-        .p1 { top: 10%; left: 5%; transform: rotate(-8deg); }
-        .p2 { top: 5%; right: 5%; transform: rotate(5deg); }
-        .p3 { top: 30%; left: 50%; transform: translateX(-50%) rotate(2deg); width: 140px; z-index: 5;} 
-        .p4 { bottom: 10%; left: 8%; transform: rotate(-12deg); }
-        .p5 { bottom: 5%; right: 8%; transform: rotate(7deg); }
+        /* Efek Selotip Kebiruan/Abu-abu */
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 35%;
+            width: 50px;
+            height: 20px;
+            background: rgba(180, 190, 210, 0.4); 
+            backdrop-filter: blur(1px);
+            transform: rotate(-3deg);
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
 
+        /* Layout Posisi Foto (Disesuaikan agar mirip gambar) */
+        .p1 { top: 10px; left: 5%; transform: rotate(-8deg); }
+        .p2 { top: 0px; right: 5%; transform: rotate(5deg); }
+        .p3 { top: 160px; left: 25%; transform: rotate(2deg); width: 200px; z-index: 5;} /* Foto utama di tengah */
+        .p4 { bottom: 20px; left: 2%; transform: rotate(-12deg); }
+        .p5 { bottom: 0px; right: 10%; transform: rotate(7deg); }
+
+        .polaroid:hover {
+            transform: scale(1.1) rotate(0deg);
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        /* Tombol Interaktif */
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 25px;
+            height: 60px;
+            align-items: center;
         }
 
         .btn {
-            padding: 10px 30px;
-            font-size: 1.2rem;
+            padding: 12px 35px;
+            font-size: 1.3rem;
             border: none;
             cursor: pointer;
             border-radius: 4px;
+            transition: all 0.2s ease;
             font-family: 'Cormorant Garamond', serif;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
 
-        #yesBtn { background-color: #5a8ab1; color: white; }
-        #noBtn { background-color: #d9a5b3; color: white; position: relative; }
+        #yesBtn {
+            background-color: #5a8ab1;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #d9a5b3; /* Pink pastel kecokelatan */
+            color: white;
+            position: relative;
+        }
 
         #message {
             margin-top: 20px;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #5a8ab1;
             display: none;
             font-family: 'Shadows Into Light', cursive;
             animation: fadeIn 1s;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
-
-    <img src="bunga1.png" alt="" class="flower flower-1">
-    <img src="bunga2.png" alt="" class="flower flower-2">
 
     <div class="container">
         <h1>happier</h1>
         <p class="subtitle">Will you be my Valentine?</p>
 
         <div class="gallery">
-            <div class="polaroid p1"><img src="foto1.jpg" alt="1"></div>
-            <div class="polaroid p2"><img src="foto2.jpg" alt="2"></div>
-            <div class="polaroid p3"><img src="foto3.jpg" alt="3"></div>
-            <div class="polaroid p4"><img src="foto4.jpg" alt="4"></div>
-            <div class="polaroid p5"><img src="foto5.jpg" alt="5"></div>
+            <div class="polaroid p1"><img src="foto1.jpg" alt="Memory 1"></div>
+            <div class="polaroid p2"><img src="foto2.jpg" alt="Memory 2"></div>
+            <div class="polaroid p3"><img src="foto3.jpg" alt="Memory 3"></div>
+            <div class="polaroid p4"><img src="foto4.jpg" alt="Memory 4"></div>
+            <div class="polaroid p5"><img src="foto5.jpg" alt="Memory 5"></div>
         </div>
 
         <div class="buttons">
@@ -153,14 +161,16 @@
             <button class="btn" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No</button>
         </div>
 
-        <div id="message">I knew you'd say YES! ❤️</div>
+        <div id="message">I knew you'd say YES! ❤️ See you soon!</div>
     </div>
 
     <script>
+        // Fungsi membuat tombol "No" lari saat didekati/diklik
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
@@ -170,6 +180,8 @@
             document.querySelector('.buttons').style.display = 'none';
             document.getElementById('message').style.display = 'block';
             document.querySelector('.subtitle').style.display = 'none';
+            
+            // Variasi tambahan: Alert manis
             setTimeout(() => {
                 alert("You just made my day! Happy Valentine's! ❤️");
             }, 500);
