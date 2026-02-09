@@ -1,159 +1,130 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Untuk Lita</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine untukmu</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet">
+  <!-- Font Mincho Jepang -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: 'Shippori Mincho', serif;
-      background: url('background.jpg') center/cover no-repeat fixed;
+      font-family: 'Noto Serif JP', serif;
+      background: #f7f7f7;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 420px;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(4px);
-      padding: 22px 16px 32px;
-      border-radius: 20px;
+      padding: 24px 16px 40px;
     }
 
     /* Inisial */
-    .initials {
+    .names {
+      width: 100%;
+      max-width: 360px;
       display: flex;
       justify-content: space-between;
-      font-size: 18px;
-      padding: 0 12px;
-      margin-bottom: 6px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #444;
     }
 
     h1 {
-      text-align: center;
-      font-size: 22px;
-      margin: 6px 0 18px;
+      margin: 8px 0 24px;
+      font-size: 20px;
+      font-weight: 600;
     }
 
-    /* Album */
-    .album {
+    /* Polaroid container */
+    .photos {
       position: relative;
-      height: 620px;
+      width: 100%;
+      max-width: 340px;
+      height: 420px; /* penting biar gak ketindihan */
+      margin-bottom: 32px;
     }
 
     .polaroid {
       position: absolute;
-      background: #fff;
+      width: 170px; /* GEDE */
+      background: white;
       padding: 10px 10px 18px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
-      border-radius: 6px;
-    }
-
-    .photo {
-      width: 150px;
-      height: 200px;
-      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
       border-radius: 4px;
     }
 
-    .tape {
-      position: absolute;
-      width: 62px;
-      top: -14px;
-      left: 44px;
-      opacity: 0.9;
+    .polaroid img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
     }
 
-    /* POSISI FIX (HP) */
-    .p1 { top: 10px;  left: 20px;  transform: rotate(-5deg); z-index: 1; }
-    .p2 { top: 80px;  right: 20px; transform: rotate(4deg);  z-index: 2; }
-    .p3 { top: 240px; left: 40px;  transform: rotate(2deg);  z-index: 3; }
-    .p4 { top: 320px; right: 24px; transform: rotate(-4deg); z-index: 2; }
-    .p5 { top: 160px; left: 120px; transform: rotate(1deg);  z-index: 1; }
+    /* POSISI DIATUR MANUAL BIAR KELIHATAN */
+    .p1 { top: 0; left: 0; transform: rotate(-5deg); }
+    .p2 { top: 30px; right: 0; transform: rotate(6deg); }
+    .p3 { top: 130px; left: 50%; transform: translateX(-50%) rotate(-2deg); }
+    .p4 { bottom: 0; left: 0; transform: rotate(4deg); }
+    .p5 { bottom: 20px; right: 0; transform: rotate(-6deg); }
 
-    /* Question */
+    /* Tombol */
     .question {
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    .question p {
-      font-size: 18px;
       margin-bottom: 12px;
+      font-size: 14px;
     }
 
     .buttons {
       display: flex;
-      justify-content: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     button {
-      font-family: 'Shippori Mincho', serif;
-      padding: 10px 22px;
-      border-radius: 20px;
       border: none;
+      padding: 8px 18px;
+      border-radius: 18px;
       font-size: 14px;
       cursor: pointer;
     }
 
-    .yes { background: #f4b6c2; }
-    .no  { background: #d3d3d3; }
+    .yes {
+      background: #f4b6c2;
+      color: #000;
+    }
+
+    .no {
+      background: #ddd;
+      color: #000;
+    }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="initials">
-      <span>アルファン</span>
-      <span>ロリタ</span>
-    </div>
 
-    <h1>Valentine untukmu</h1>
-
-    <div class="album">
-      <div class="polaroid p1">
-        <img src="foto1.jpg" class="photo">
-        <img src="tape.png" class="tape">
-      </div>
-
-      <div class="polaroid p2">
-        <img src="foto2.jpg" class="photo">
-        <img src="tape.png" class="tape">
-      </div>
-
-      <div class="polaroid p3">
-        <img src="foto3.jpg" class="photo">
-        <img src="tape.png" class="tape">
-      </div>
-
-      <div class="polaroid p4">
-        <img src="foto4.jpg" class="photo">
-        <img src="tape.png" class="tape">
-      </div>
-
-      <div class="polaroid p5">
-        <img src="foto5.jpg" class="photo">
-        <img src="tape.png" class="tape">
-      </div>
-    </div>
-
-    <div class="question">
-      <p>Mau jadi Valentine-ku?</p>
-      <div class="buttons">
-        <button class="yes" onclick="alert('Aku seneng banget 💖')">Yes</button>
-        <button class="no" onclick="alert('Aku tetap sayang kamu 🌷')">No</button>
-      </div>
-    </div>
+  <div class="names">
+    <span>アルファン</span>
+    <span>ロリタ</span>
   </div>
+
+  <h1>Valentine untukmu</h1>
+
+  <div class="photos">
+    <div class="polaroid p1"><img src="foto1.jpg"></div>
+    <div class="polaroid p2"><img src="foto2.jpg"></div>
+    <div class="polaroid p3"><img src="foto3.jpg"></div>
+    <div class="polaroid p4"><img src="foto4.jpg"></div>
+    <div class="polaroid p5"><img src="foto5.jpg"></div>
+  </div>
+
+  <div class="question">Mau jadi Valentine-ku?</div>
+
+  <div class="buttons">
+    <button class="yes">Yes</button>
+    <button class="no">No</button>
+  </div>
+
 </body>
 </html>
