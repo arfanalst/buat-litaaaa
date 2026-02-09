@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentine untuk Lita</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Lita</title>
 
   <!-- Font Mincho -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -18,82 +18,94 @@
       width: 100%;
       height: 100vh;
       font-family: 'Noto Serif JP', serif;
-      background: linear-gradient(180deg, #faf6f2, #f1e7e3);
+
+      /* BACKGROUND FOTO (KAMU GANTI FILE-NYA) */
+      background: url('background.jpg') center / cover no-repeat;
 
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .container {
+    .wrapper {
       width: 100%;
       height: 100%;
-      max-width: 430px; /* ukuran HP */
-      padding: 20px;
+      max-width: 430px;
+      padding: 20px 16px 24px;
+
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(4px);
 
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
     }
 
-    .names {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      font-size: 15px;
-      color: #444;
+    /* TEKS FROM - TO */
+    .fromto {
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: #333;
     }
 
     h1 {
-      margin: 10px 0 0;
+      text-align: center;
       font-size: 22px;
-      font-weight: normal;
+      font-weight: 600;
+      margin: 8px 0 0;
     }
 
-    /* FOTO AREA */
-    .photos {
+    /* AREA FOTO SCRAPBOOK */
+    .album {
+      position: relative;
       width: 100%;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin: 20px 0;
+      height: 360px;
+      margin-top: 10px;
     }
 
     .polaroid {
+      position: absolute;
       background: #fff;
-      padding: 10px 10px 20px;
+      padding: 12px 12px 22px;
       border-radius: 6px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
     .polaroid img {
       width: 100%;
-      height: auto;
-      border-radius: 4px;
       display: block;
+      border-radius: 4px;
     }
 
-    /* foto tengah */
-    .center {
-      grid-column: span 2;
-      width: 70%;
-      margin: 0 auto;
+    /* UKURAN FOTO (GEDE) */
+    .polaroid {
+      width: 190px;
     }
 
+    /* POSISI — NUMPUK HALUS, PINGGIR KELIHATAN */
+    .p1 { top: 0; left: 10px; transform: rotate(-6deg); z-index: 1; }
+    .p2 { top: 40px; right: 0; transform: rotate(5deg); z-index: 2; }
+    .p3 { top: 120px; left: 50%; transform: translateX(-50%) rotate(0deg); z-index: 3; }
+    .p4 { bottom: 20px; left: 0; transform: rotate(4deg); z-index: 2; }
+    .p5 { bottom: 0; right: 10px; transform: rotate(-5deg); z-index: 1; }
+
+    /* QUESTION */
     .question {
-      font-size: 15px;
-      margin-bottom: 12px;
+      text-align: center;
+      font-size: 16px;
+      margin-top: 8px;
     }
 
     .buttons {
       display: flex;
+      justify-content: center;
       gap: 16px;
-      margin-bottom: 10px;
+      margin-top: 10px;
     }
 
     button {
-      padding: 12px 26px;
+      padding: 12px 28px;
       border-radius: 22px;
       border: none;
       font-size: 14px;
@@ -112,30 +124,27 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="wrapper">
 
-    <div class="names">
-      <span>アルファン</span>
-      <span>ロリタ</span>
+    <div>
+      <div class="fromto">from アルファン to ロリタ</div>
+      <h1>Valentine untukmu</h1>
     </div>
 
-    <h1>Valentine untukmu</h1>
-
-    <div class="photos">
-      <div class="polaroid"><img src="foto1.jpg"></div>
-      <div class="polaroid"><img src="foto2.jpg"></div>
-
-      <div class="polaroid center"><img src="foto3.jpg"></div>
-
-      <div class="polaroid"><img src="foto4.jpg"></div>
-      <div class="polaroid"><img src="foto5.jpg"></div>
+    <div class="album">
+      <div class="polaroid p1"><img src="foto1.jpg"></div>
+      <div class="polaroid p2"><img src="foto2.jpg"></div>
+      <div class="polaroid p3"><img src="foto3.jpg"></div>
+      <div class="polaroid p4"><img src="foto4.jpg"></div>
+      <div class="polaroid p5"><img src="foto5.jpg"></div>
     </div>
 
-    <div class="question">Mau jadi Valentine-ku?</div>
-
-    <div class="buttons">
-      <button class="yes">Yes</button>
-      <button class="no">No</button>
+    <div>
+      <div class="question">Mau jadi Valentine-ku?</div>
+      <div class="buttons">
+        <button class="yes">Yes</button>
+        <button class="no">No</button>
+      </div>
     </div>
 
   </div>
