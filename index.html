@@ -16,40 +16,50 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh; /* Kunci tinggi layar */
             justify-content: center;
             color: #444;
-            overflow: hidden;
+            overflow: hidden; /* Hilangkan scroll */
         }
 
         .container {
             width: 100%;
-            max-width: 450px;
+            max-width: 400px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding: 10px;
-            position: relative;
         }
 
-        h1 { font-size: 2.2rem; color: #5a8ab1; margin: 0; font-weight: 500; }
-        .subtitle { font-family: 'Shadows Into Light', cursive; font-size: 1.1rem; margin: 5px 0; color: #777; }
-        .signature { font-family: 'Shadows Into Light', cursive; font-size: 0.9rem; margin-bottom: 5px; color: #999; }
-
-        /* Dekorasi Bunga */
-        .flower {
-            position: absolute;
-            width: 60px;
-            z-index: 0;
-            opacity: 0.6;
-            pointer-events: none;
+        h1 {
+            font-size: 2.2rem; /* Ukuran teks lebih ramping */
+            color: #5a8ab1;
+            margin: 0;
+            font-weight: 500;
         }
-        .f1 { top: 10%; left: -5%; transform: rotate(-15deg); }
-        .f2 { bottom: 15%; right: -5%; transform: rotate(15deg); }
 
+        .subtitle {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 1.1rem;
+            margin: 5px 0;
+            color: #777;
+        }
+
+        .signature {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #999;
+        }
+
+        /* Galeri dibuat lebih pendek (280px) agar tombol naik */
         .gallery {
             position: relative;
-            height: 300px; 
+            height: 280px; 
             width: 100%;
             margin: 10px 0;
+            pointer-events: none;
         }
 
         .polaroid {
@@ -57,28 +67,32 @@
             background: white;
             padding: 5px 5px 15px 5px;
             box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
-            width: 100px;
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100px; /* Ukuran foto lebih ramping */
+            transition: all 0.3s ease;
             border: 1px solid #ddd;
             cursor: pointer;
+            pointer-events: auto;
             z-index: 2;
         }
 
-        .polaroid img { width: 100%; height: 100px; object-fit: cover; display: block; }
+        .polaroid img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
 
-        /* TATA LETAK AWAL (Favoritmu) */
+        .polaroid:hover, .polaroid:active {
+            transform: scale(1.2) rotate(0deg) !important;
+            z-index: 50 !important;
+        }
+
+        /* Tata letak favorit yang sudah dirampingkan posisinya */
         .p1 { top: 0%; left: 5%; transform: rotate(-10deg); }
         .p2 { top: 5%; right: 5%; transform: rotate(12deg); }
-        .p3 { top: 40%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); width: 115px; z-index: 5;} 
+        .p3 { top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); width: 115px; z-index: 5;} 
         .p4 { bottom: 0%; left: 5%; transform: rotate(-15deg); }
         .p5 { bottom: 0%; right: 5%; transform: rotate(8deg); }
-
-        /* TATA LETAK SETELAH YES (Lebih Rapi & Aesthetic) */
-        .gallery.success .p1 { top: 15%; left: 15%; transform: rotate(-5deg); }
-        .gallery.success .p2 { top: 15%; right: 15%; transform: rotate(5deg); }
-        .gallery.success .p3 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(0deg); width: 125px; }
-        .gallery.success .p4 { top: 75%; left: 20%; transform: rotate(-2deg); }
-        .gallery.success .p5 { top: 75%; right: 20%; transform: rotate(2deg); }
 
         .buttons {
             display: flex;
@@ -87,11 +101,12 @@
             margin-top: 10px;
             height: 50px;
             align-items: center;
+            z-index: 100;
         }
 
         .btn {
             padding: 10px 25px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             border: none;
             cursor: pointer;
             border-radius: 4px;
@@ -100,11 +115,11 @@
         }
 
         #yesBtn { background-color: #5a8ab1; color: white; }
-        #noBtn { background-color: #d9a5b3; color: white; position: relative; z-index: 100; }
+        #noBtn { background-color: #d9a5b3; color: white; }
 
         #message {
             margin-top: 10px;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #5a8ab1;
             display: none;
             font-family: 'Shadows Into Light', cursive;
@@ -114,14 +129,11 @@
 <body>
 
     <div class="container">
-        <img src="https://www.transparentpng.com/download/flower/R6o9K1-flower-clipart-transparent.png" class="flower f1">
-        <img src="https://www.transparentpng.com/download/flower/R6o9K1-flower-clipart-transparent.png" class="flower f2">
-
         <h1 id="mainTitle">Happy Valentine's Day!</h1>
         <p class="subtitle" id="subText">Will you be my Valentine?</p>
         <p class="signature" id="fromTo">from アルファン to ロリタ</p>
 
-        <div class="gallery" id="gal">
+        <div class="gallery">
             <div class="polaroid p1"><img src="foto1.jpg" alt="1"></div>
             <div class="polaroid p2"><img src="foto2.jpg" alt="2"></div>
             <div class="polaroid p3"><img src="foto3.jpg" alt="3"></div>
@@ -140,25 +152,25 @@
     <script>
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40) + 20;
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40) + 20;
+            const padding = 30;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+            
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
+            noBtn.style.zIndex = '999';
         }
 
         function ansYes() {
             document.getElementById('btnGroup').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
             document.getElementById('subText').style.display = 'none';
             document.getElementById('fromTo').style.display = 'none';
-            document.getElementById('message').style.display = 'block';
-            
-            // Mengubah tata letak foto jadi lebih bagus
-            document.getElementById('gal').classList.add('success');
             
             setTimeout(() => {
                 alert("Happy Valentine's! 🤍");
-            }, 800);
+            }, 300);
         }
     </script>
 </body>
