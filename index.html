@@ -2,10 +2,10 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valentine untukmu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valentine untuk Lita</title>
 
-  <!-- Font Mincho Jepang -->
+  <!-- Font Mincho -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -15,116 +15,123 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
+      height: 100vh;
       font-family: 'Noto Serif JP', serif;
-      background: #f7f7f7;
+      background: linear-gradient(180deg, #faf6f2, #f3e9e5);
+
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: 24px 16px 40px;
     }
 
-    /* Inisial */
-    .names {
+    .wrapper {
       width: 100%;
-      max-width: 360px;
+      max-width: 390px;
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    .names {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       font-size: 14px;
       color: #444;
     }
 
     h1 {
-      margin: 8px 0 24px;
       font-size: 20px;
+      margin: 12px 0 20px;
       font-weight: 600;
     }
 
-    /* Polaroid container */
+    /* POLAROID AREA */
     .photos {
       position: relative;
       width: 100%;
-      max-width: 340px;
-      height: 420px; /* penting biar gak ketindihan */
-      margin-bottom: 32px;
+      height: 320px;
+      margin-bottom: 24px;
     }
 
     .polaroid {
       position: absolute;
-      width: 170px; /* GEDE */
+      width: 140px;
       background: white;
-      padding: 10px 10px 18px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-      border-radius: 4px;
+      padding: 8px 8px 18px;
+      border-radius: 6px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     }
 
     .polaroid img {
       width: 100%;
+      border-radius: 4px;
       display: block;
-      border-radius: 2px;
     }
 
-    /* POSISI DIATUR MANUAL BIAR KELIHATAN */
-    .p1 { top: 0; left: 0; transform: rotate(-5deg); }
-    .p2 { top: 30px; right: 0; transform: rotate(6deg); }
-    .p3 { top: 130px; left: 50%; transform: translateX(-50%) rotate(-2deg); }
-    .p4 { bottom: 0; left: 0; transform: rotate(4deg); }
-    .p5 { bottom: 20px; right: 0; transform: rotate(-6deg); }
+    /* POSISI FOTO (AMAN GAK NUTUPIN) */
+    .p1 { top: 0; left: 10px; transform: rotate(-8deg); }
+    .p2 { top: 30px; right: 10px; transform: rotate(7deg); }
+    .p3 { top: 90px; left: 110px; transform: rotate(0deg); z-index: 2; }
+    .p4 { bottom: 10px; left: 0; transform: rotate(6deg); }
+    .p5 { bottom: 0; right: 0; transform: rotate(-6deg); }
 
-    /* Tombol */
     .question {
-      margin-bottom: 12px;
       font-size: 14px;
+      margin-bottom: 12px;
     }
 
     .buttons {
       display: flex;
+      justify-content: center;
       gap: 12px;
     }
 
     button {
       border: none;
-      padding: 8px 18px;
-      border-radius: 18px;
+      padding: 10px 22px;
+      border-radius: 20px;
       font-size: 14px;
       cursor: pointer;
+      font-family: inherit;
     }
 
     .yes {
-      background: #f4b6c2;
-      color: #000;
+      background: #f3b5c1;
+      color: #333;
     }
 
     .no {
       background: #ddd;
-      color: #000;
+      color: #555;
     }
   </style>
 </head>
+
 <body>
+  <div class="wrapper">
 
-  <div class="names">
-    <span>アルファン</span>
-    <span>ロリタ</span>
+    <div class="names">
+      <span>アルファン</span>
+      <span>ロリタ</span>
+    </div>
+
+    <h1>Valentine untukmu</h1>
+
+    <div class="photos">
+      <div class="polaroid p1"><img src="foto1.jpg"></div>
+      <div class="polaroid p2"><img src="foto2.jpg"></div>
+      <div class="polaroid p3"><img src="foto3.jpg"></div>
+      <div class="polaroid p4"><img src="foto4.jpg"></div>
+      <div class="polaroid p5"><img src="foto5.jpg"></div>
+    </div>
+
+    <div class="question">Mau jadi Valentine-ku?</div>
+
+    <div class="buttons">
+      <button class="yes">Yes</button>
+      <button class="no">No</button>
+    </div>
+
   </div>
-
-  <h1>Valentine untukmu</h1>
-
-  <div class="photos">
-    <div class="polaroid p1"><img src="foto1.jpg"></div>
-    <div class="polaroid p2"><img src="foto2.jpg"></div>
-    <div class="polaroid p3"><img src="foto3.jpg"></div>
-    <div class="polaroid p4"><img src="foto4.jpg"></div>
-    <div class="polaroid p5"><img src="foto5.jpg"></div>
-  </div>
-
-  <div class="question">Mau jadi Valentine-ku?</div>
-
-  <div class="buttons">
-    <button class="yes">Yes</button>
-    <button class="no">No</button>
-  </div>
-
 </body>
 </html>
