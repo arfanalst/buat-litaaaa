@@ -1,157 +1,168 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <title>Valentine for Lita</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Lita</title>
+
+  <!-- Font Mincho -->
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet">
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      height: 100vh;
-      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      font-family: 'Shippori Mincho', serif;
+      background: url('background.jpg') center/cover no-repeat fixed;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #fce4ec, #e3f2fd);
-      overflow: hidden;
     }
 
-    .card {
-      background: white;
-      padding: 32px 42px;
-      border-radius: 22px;
-      text-align: center;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-      z-index: 2;
-      max-width: 360px;
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
+      padding: 20px 16px 30px;
+      border-radius: 20px;
+      position: relative;
+    }
+
+    /* Inisial */
+    .initials {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      margin-bottom: 10px;
+      padding: 0 10px;
     }
 
     h1 {
-      color: #e91e63;
-      margin-bottom: 10px;
-      font-size: 26px;
+      text-align: center;
+      font-size: 22px;
+      margin: 6px 0 18px;
     }
 
-    p {
-      color: #555;
-      margin-bottom: 25px;
-      font-size: 15px;
+    /* Album Kolase */
+    .album {
+      position: relative;
+      height: 520px;
+    }
+
+    .polaroid {
+      position: absolute;
+      background: white;
+      padding: 10px 10px 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      border-radius: 6px;
+    }
+
+    .polaroid img.photo {
+      width: 130px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .tape {
+      position: absolute;
+      width: 60px;
+      top: -14px;
+      left: 35px;
+      opacity: 0.9;
+    }
+
+    /* Posisi ala scrapbook */
+    .p1 { top: 10px; left: 20px; transform: rotate(-6deg); }
+    .p2 { top: 60px; right: 20px; transform: rotate(5deg); }
+    .p3 { top: 210px; left: 40px; transform: rotate(2deg); }
+    .p4 { top: 250px; right: 30px; transform: rotate(-5deg); }
+    .p5 { top: 140px; left: 120px; transform: rotate(1deg); }
+
+    /* Valentine question */
+    .question {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .question p {
+      font-size: 18px;
+      margin-bottom: 12px;
     }
 
     .buttons {
       display: flex;
-      gap: 20px;
       justify-content: center;
+      gap: 14px;
     }
 
     button {
-      padding: 12px 26px;
+      font-family: 'Shippori Mincho', serif;
+      padding: 10px 22px;
+      border-radius: 20px;
       border: none;
-      border-radius: 30px;
-      font-size: 16px;
+      font-size: 14px;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     .yes {
-      background: #f48fb1;
-      color: white;
-    }
-
-    .yes:hover {
-      background: #ec407a;
-      transform: scale(1.05);
+      background: #f4b6c2;
     }
 
     .no {
-      background: #bbdefb;
-      color: #333;
-      position: relative;
-    }
-
-    .floating-photo {
-      position: absolute;
-      width: 160px;
-      border-radius: 22px;
-      animation: float 4s ease-in-out infinite;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    .photo1 {
-      top: 10%;
-      left: 8%;
-    }
-
-    .photo2 {
-      bottom: 12%;
-      right: 10%;
-      animation-delay: 2s;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-18px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .album {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .album-photo {
-      position: absolute;
-      width: 140px;
-      border-radius: 18px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-      animation: float 4s ease-in-out infinite;
-      background: white;
-      padding: 6px;
-    }
-
-    .p1 { top: 8%; left: 6%; transform: rotate(-6deg); }
-    .p2 { top: 18%; right: 10%; transform: rotate(5deg); animation-delay: 1s; }
-    .p3 { bottom: 20%; left: 12%; transform: rotate(4deg); animation-delay: 2s; }
-    .p4 { bottom: 12%; right: 14%; transform: rotate(-5deg); animation-delay: 3s; }
-    .p5 { top: 40%; left: 2%; transform: rotate(-2deg); animation-delay: 2.5s; }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
+      background: #d3d3d3;
     }
   </style>
 </head>
+
 <body>
+  <div class="container">
+    <div class="initials">
+      <span>アルファン</span>
+      <span>ロリタ</span>
+    </div>
 
-  <!-- ALBUM FOTO FLOATING -->
-  <div class="album">
-    <img src="foto1.jpg" class="album-photo p1">
-    <img src="foto2.jpg" class="album-photo p2">
-    <img src="foto3.jpg" class="album-photo p3">
-    <img src="foto4.jpg" class="album-photo p4">
-    <img src="foto5.jpg" class="album-photo p5">
-  </div>
+    <h1>Valentine untukmu</h1>
 
-  <div class="card">
-    <h1>💖 Lita, Will You Be My Valentine? 💖</h1>
-    <p>Lolita Revalina Santosa, mau nggak kamu jadi Valentine-ku tahun ini? 🥺✨</p>
+    <div class="album">
+      <div class="polaroid p1">
+        <img src="foto1.jpg" class="photo">
+        <img src="tape.png" class="tape">
+      </div>
 
-    <div class="buttons">
-      <button class="yes" onclick="yesClick()">YES 💕</button>
-      <button class="no" onmouseover="moveNo(this)">NO 🙃</button>
+      <div class="polaroid p2">
+        <img src="foto2.jpg" class="photo">
+        <img src="tape.png" class="tape">
+      </div>
+
+      <div class="polaroid p3">
+        <img src="foto3.jpg" class="photo">
+        <img src="tape.png" class="tape">
+      </div>
+
+      <div class="polaroid p4">
+        <img src="foto4.jpg" class="photo">
+        <img src="tape.png" class="tape">
+      </div>
+
+      <div class="polaroid p5">
+        <img src="foto5.jpg" class="photo">
+        <img src="tape.png" class="tape">
+      </div>
+    </div>
+
+    <div class="question">
+      <p>Mau jadi Valentine-ku?</p>
+      <div class="buttons">
+        <button class="yes" onclick="alert('Aku seneng banget 💖')">Yes</button>
+        <button class="no" onclick="alert('Aku tetap sayang kamu 🌷')">No</button>
+      </div>
     </div>
   </div>
-
-  <script>
-    function yesClick() {
-      alert("YEAYYY 💖 Makasih ya Lita, aku sayang kamu!");
-    }
-
-    function moveNo(btn) {
-      const x = Math.random() * 200 - 100;
-      const y = Math.random() * 200 - 100;
-      btn.style.transform = `translate(${x}px, ${y}px)`;
-    }
-  </script>
-
 </body>
 </html>
