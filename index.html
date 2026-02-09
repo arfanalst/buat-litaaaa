@@ -16,10 +16,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh; /* Kunci tinggi layar */
+            height: 100vh;
             justify-content: center;
             color: #444;
-            overflow: hidden; /* Hilangkan scroll */
+            overflow: hidden; /* Mencegah scroll saat tombol No lari */
         }
 
         .container {
@@ -33,7 +33,7 @@
         }
 
         h1 {
-            font-size: 2.2rem; /* Ukuran teks lebih ramping */
+            font-size: 2.2rem;
             color: #5a8ab1;
             margin: 0;
             font-weight: 500;
@@ -53,13 +53,11 @@
             color: #999;
         }
 
-        /* Galeri dibuat lebih pendek (280px) agar tombol naik */
         .gallery {
             position: relative;
             height: 280px; 
             width: 100%;
             margin: 10px 0;
-            pointer-events: none;
         }
 
         .polaroid {
@@ -67,11 +65,10 @@
             background: white;
             padding: 5px 5px 15px 5px;
             box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
-            width: 100px; /* Ukuran foto lebih ramping */
+            width: 100px;
             transition: all 0.3s ease;
             border: 1px solid #ddd;
             cursor: pointer;
-            pointer-events: auto;
             z-index: 2;
         }
 
@@ -82,12 +79,12 @@
             display: block;
         }
 
-        .polaroid:hover, .polaroid:active {
+        .polaroid:hover {
             transform: scale(1.2) rotate(0deg) !important;
             z-index: 50 !important;
         }
 
-        /* Tata letak favorit yang sudah dirampingkan posisinya */
+        /* Posisi Foto */
         .p1 { top: 0%; left: 5%; transform: rotate(-10deg); }
         .p2 { top: 5%; right: 5%; transform: rotate(12deg); }
         .p3 { top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); width: 115px; z-index: 5;} 
@@ -102,6 +99,7 @@
             height: 50px;
             align-items: center;
             z-index: 100;
+            width: 100%;
         }
 
         .btn {
@@ -112,10 +110,16 @@
             border-radius: 4px;
             font-family: 'Cormorant Garamond', serif;
             box-shadow: 2px 3px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
         }
 
         #yesBtn { background-color: #5a8ab1; color: white; }
-        #noBtn { background-color: #d9a5b3; color: white; }
+        
+        #noBtn { 
+            background-color: #d9a5b3; 
+            color: white; 
+            position: relative; /* Default position */
+        }
 
         #message {
             margin-top: 10px;
@@ -150,23 +154,39 @@
     </div>
 
     <script>
+        // Memastikan semua kembali normal saat refresh
+        window.onload = function() {
+            const noBtn = document.getElementById('noBtn');
+            noBtn.style.position = 'relative';
+            noBtn.style.left = '0';
+            noBtn.style.top = '0';
+        };
+
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            const padding = 30;
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+            // Menghitung batas layar agar tombol tidak benar-benar hilang
+            const padding = 50;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
             
             noBtn.style.position = 'fixed';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
             noBtn.style.zIndex = '999';
         }
 
         function ansYes() {
+            // Sembunyikan elemen yang tidak diperlukan
             document.getElementById('btnGroup').style.display = 'none';
-            document.getElementById('message').style.display = 'block';
             document.getElementById('subText').style.display = 'none';
             document.getElementById('fromTo').style.display = 'none';
+            
+            // Tampilkan pesan bahagia
+            const message = document.getElementById('message');
+            message.style.display = 'block';
             
             setTimeout(() => {
                 alert("Happy Valentine's! 🤍");
