@@ -16,24 +16,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Menggunakan min-height agar tidak mengunci layar */
             justify-content: center;
             color: #444;
-            overflow: hidden; /* Mencegah scroll jika tidak perlu */
+            overflow-x: hidden; /* Hanya kunci horizontal */
         }
 
         .container {
-            width: 100%;
-            max-width: 500px;
+            width: 90%;
+            max-width: 450px;
             text-align: center;
-            padding: 10px;
+            padding: 20px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
 
         h1 {
-            font-size: 2.2rem; /* Ukuran dikecilkan */
+            font-size: 2rem;
             color: #5a8ab1;
             margin: 0;
             font-weight: 500;
@@ -49,50 +50,50 @@
         .signature {
             font-family: 'Shadows Into Light', cursive;
             font-size: 0.9rem;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #999;
         }
 
-        /* Galeri dibuat lebih pendek agar hemat ruang */
+        /* Area Galeri dibuat lebih kecil agar tombol naik */
         .gallery {
             position: relative;
-            height: 280px; 
+            height: 250px; 
             width: 100%;
-            margin-bottom: 15px;
+            margin: 15px 0;
         }
 
         .polaroid {
             position: absolute;
             background: white;
-            padding: 5px 5px 18px 5px;
-            box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
-            width: 100px; /* Foto lebih kecil */
+            padding: 5px 5px 15px 5px;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+            width: 90px;
             transition: all 0.3s ease;
             border: 1px solid #ddd;
-            cursor: pointer;
             z-index: 1;
         }
 
         .polaroid img {
             width: 100%;
-            height: 100px;
+            height: 90px;
             object-fit: cover;
             display: block;
         }
 
-        /* Tata letak yang lebih rapat */
-        .p1 { top: 5%; left: 10%; transform: rotate(-10deg); }
-        .p2 { top: 10%; right: 10%; transform: rotate(12deg); }
-        .p3 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); width: 110px; z-index: 5;} 
-        .p4 { bottom: 5%; left: 5%; transform: rotate(-15deg); }
-        .p5 { bottom: 5%; right: 5%; transform: rotate(8deg); }
+        /* Posisi foto yang lebih rapat ke tengah */
+        .p1 { top: 0%; left: 5%; transform: rotate(-10deg); }
+        .p2 { top: 5%; right: 5%; transform: rotate(12deg); }
+        .p3 { top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); width: 105px; z-index: 5;} 
+        .p4 { bottom: 0%; left: 10%; transform: rotate(-15deg); }
+        .p5 { bottom: 0%; right: 10%; transform: rotate(8deg); }
 
         .buttons {
             display: flex;
             justify-content: center;
             gap: 15px;
             width: 100%;
-            height: 50px;
+            margin-top: 10px;
+            min-height: 60px;
             align-items: center;
         }
 
@@ -105,13 +106,14 @@
             font-family: 'Cormorant Garamond', serif;
             box-shadow: 2px 3px 6px rgba(0,0,0,0.1);
             transition: 0.2s;
+            touch-action: manipulation; /* Optimasi untuk mobile */
         }
 
         #yesBtn { background-color: #5a8ab1; color: white; }
-        #noBtn { background-color: #d9a5b3; color: white; position: relative; }
+        #noBtn { background-color: #d9a5b3; color: white; }
 
         #message {
-            margin-top: 10px;
+            margin-top: 20px;
             font-size: 1.8rem;
             color: #5a8ab1;
             display: none;
@@ -145,15 +147,18 @@
     <script>
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            const padding = 50;
-            // Menghitung batas agar tombol tidak keluar layar
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+            // Menghitung area aman agar tidak lari terlalu jauh dari layar
+            const padding = 20;
+            const maxWidth = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxHeight = window.innerHeight - noBtn.offsetHeight - padding;
+            
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxWidth));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxHeight));
             
             noBtn.style.position = 'fixed';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-            noBtn.style.zIndex = '999';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.zIndex = '9999';
         }
 
         function ansYes() {
