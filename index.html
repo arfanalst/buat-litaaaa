@@ -41,11 +41,17 @@
         .subtitle {
             font-family: 'Shadows Into Light', cursive;
             font-size: 1.2rem;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             color: #777;
         }
 
-        /* Galeri dibuat lebih tinggi agar foto tidak menumpuk */
+        .signature {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #999;
+        }
+
         .gallery {
             position: relative;
             height: 450px; 
@@ -58,7 +64,7 @@
             background: white;
             padding: 8px 8px 25px 8px;
             box-shadow: 3px 5px 15px rgba(0,0,0,0.12);
-            width: 130px; /* Sedikit lebih besar agar proporsional */
+            width: 130px;
             transition: all 0.3s ease;
             border: 1px solid #ddd;
             cursor: pointer;
@@ -78,7 +84,6 @@
             box-shadow: 5px 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* TATA LETAK BARU (Lebih Menyebar) */
         .p1 { top: 0%; left: 0%; transform: rotate(-10deg); }
         .p2 { top: 5%; right: 0%; transform: rotate(12deg); }
         .p3 { top: 35%; left: 50%; transform: translateX(-50%) rotate(2deg); width: 150px; z-index: 5;} 
@@ -124,8 +129,9 @@
 <body>
 
     <div class="container">
-        <h1 id="mainTitle">happier</h1>
+        <h1 id="mainTitle">Happy Valentine's Day!</h1>
         <p class="subtitle" id="subText">Will you be my Valentine?</p>
+        <p class="signature" id="fromTo">from アルファン to ロリタ</p>
 
         <div class="gallery">
             <div class="polaroid p1"><img src="foto1.jpg" alt="1"></div>
@@ -140,7 +146,7 @@
             <button class="btn" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No</button>
         </div>
 
-        <div id="message">I knew you'd say YES! ❤️</div>
+        <div id="message">I knew you'd say YES! 🤍</div>
     </div>
 
     <script>
@@ -160,9 +166,10 @@
             document.getElementById('btnGroup').style.display = 'none';
             document.getElementById('message').style.display = 'block';
             document.getElementById('subText').style.display = 'none';
+            document.getElementById('fromTo').style.display = 'none';
             
             setTimeout(() => {
-                alert("Happy Valentine's! ❤️");
+                alert("Happy Valentine's! 🤍");
             }, 300);
         }
     </script>
