@@ -16,120 +16,114 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh; /* Kunci tinggi layar */
+            justify-content: center;
             color: #444;
-            overflow-x: hidden;
+            overflow: hidden; /* Hilangkan scroll */
         }
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 400px;
             text-align: center;
-            padding: 20px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
+            padding: 10px;
         }
 
         h1 {
-            font-size: 3.2rem;
+            font-size: 2.2rem; /* Ukuran teks lebih ramping */
             color: #5a8ab1;
-            margin: 10px 0 0 0;
+            margin: 0;
             font-weight: 500;
         }
 
         .subtitle {
             font-family: 'Shadows Into Light', cursive;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+            font-size: 1.1rem;
+            margin: 5px 0;
             color: #777;
         }
 
         .signature {
             font-family: 'Shadows Into Light', cursive;
-            font-size: 1rem;
-            margin-bottom: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
             color: #999;
         }
 
+        /* Galeri dibuat lebih pendek (280px) agar tombol naik */
         .gallery {
             position: relative;
-            height: 450px; 
+            height: 280px; 
             width: 100%;
-            margin-bottom: 20px;
-            pointer-events: none; /* Lapisan galeri tembus pandang... */
+            margin: 10px 0;
+            pointer-events: none;
         }
 
         .polaroid {
             position: absolute;
             background: white;
-            padding: 8px 8px 25px 8px;
-            box-shadow: 3px 5px 15px rgba(0,0,0,0.12);
-            width: 130px;
+            padding: 5px 5px 15px 5px;
+            box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
+            width: 100px; /* Ukuran foto lebih ramping */
             transition: all 0.3s ease;
             border: 1px solid #ddd;
             cursor: pointer;
-            pointer-events: auto; /* ...tapi fotonya tetap bisa ditekan */
+            pointer-events: auto;
             z-index: 2;
         }
 
         .polaroid img {
             width: 100%;
-            height: 130px;
+            height: 100px;
             object-fit: cover;
             display: block;
         }
 
         .polaroid:hover, .polaroid:active {
-            transform: scale(1.15) rotate(0deg) !important;
+            transform: scale(1.2) rotate(0deg) !important;
             z-index: 50 !important;
-            box-shadow: 5px 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* Tata letak favoritmu */
-        .p1 { top: 0%; left: 0%; transform: rotate(-10deg); }
-        .p2 { top: 5%; right: 0%; transform: rotate(12deg); }
-        .p3 { top: 35%; left: 50%; transform: translateX(-50%) rotate(2deg); width: 150px; z-index: 5;} 
-        .p4 { bottom: 5%; left: -2%; transform: rotate(-15deg); }
-        .p5 { bottom: 0%; right: -2%; transform: rotate(8deg); }
+        /* Tata letak favorit yang sudah dirampingkan posisinya */
+        .p1 { top: 0%; left: 5%; transform: rotate(-10deg); }
+        .p2 { top: 5%; right: 5%; transform: rotate(12deg); }
+        .p3 { top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); width: 115px; z-index: 5;} 
+        .p4 { bottom: 0%; left: 5%; transform: rotate(-15deg); }
+        .p5 { bottom: 0%; right: 5%; transform: rotate(8deg); }
 
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-top: 10px;
-            width: 100%;
-            height: 60px;
+            height: 50px;
             align-items: center;
-            position: relative;
-            z-index: 10; /* Tombol berada di paling atas */
+            z-index: 100;
         }
 
         .btn {
-            padding: 12px 30px;
-            font-size: 1.1rem;
+            padding: 10px 25px;
+            font-size: 1rem;
             border: none;
             cursor: pointer;
             border-radius: 4px;
             font-family: 'Cormorant Garamond', serif;
             box-shadow: 2px 3px 6px rgba(0,0,0,0.1);
-            transition: 0.2s;
         }
 
         #yesBtn { background-color: #5a8ab1; color: white; }
         #noBtn { background-color: #d9a5b3; color: white; }
 
         #message {
-            margin-top: 15px;
-            font-size: 2rem;
+            margin-top: 10px;
+            font-size: 1.8rem;
             color: #5a8ab1;
             display: none;
             font-family: 'Shadows Into Light', cursive;
-            animation: fadeIn 0.8s;
         }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -140,11 +134,11 @@
         <p class="signature" id="fromTo">from アルファン to ロリタ</p>
 
         <div class="gallery">
-            <div class="polaroid p1" onclick="focusImg(this)"><img src="foto1.jpg" alt="1"></div>
-            <div class="polaroid p2" onclick="focusImg(this)"><img src="foto2.jpg" alt="2"></div>
-            <div class="polaroid p3" onclick="focusImg(this)"><img src="foto3.jpg" alt="3"></div>
-            <div class="polaroid p4" onclick="focusImg(this)"><img src="foto4.jpg" alt="4"></div>
-            <div class="polaroid p5" onclick="focusImg(this)"><img src="foto5.jpg" alt="5"></div>
+            <div class="polaroid p1"><img src="foto1.jpg" alt="1"></div>
+            <div class="polaroid p2"><img src="foto2.jpg" alt="2"></div>
+            <div class="polaroid p3"><img src="foto3.jpg" alt="3"></div>
+            <div class="polaroid p4"><img src="foto4.jpg" alt="4"></div>
+            <div class="polaroid p5"><img src="foto5.jpg" alt="5"></div>
         </div>
 
         <div class="buttons" id="btnGroup">
@@ -156,15 +150,9 @@
     </div>
 
     <script>
-        function focusImg(el) {
-            // Memberikan efek klik pada foto
-            el.style.zIndex = "100";
-            setTimeout(() => { el.style.zIndex = ""; }, 2000);
-        }
-
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            const padding = 50;
+            const padding = 30;
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
             
