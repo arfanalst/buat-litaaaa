@@ -7,188 +7,208 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Shadows+Into+Light&display=swap');
 
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
             padding: 0;
-            width: 100vw;
+            width: 100%;
             height: 100vh;
-            overflow: hidden; /* Biar pas satu layar HP */
-            background: url('background.jpg') no-repeat center center; /* GANTI NAMA FILE BG KAMU DI SINI */
+            height: -webkit-fill-available; /* Fix untuk browser mobile */
+            overflow: hidden; 
+            background: url('background.jpg') no-repeat center center;
             background-size: cover;
             font-family: 'Cormorant Garamond', serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
             position: relative;
         }
 
-        /* Overlay tekstur kertas agar tetap estetik */
-        body::before {
-            content: "";
+        /* Overlay halus agar teks terbaca */
+        .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.2); /* Agar BG asli tidak terlalu gelap */
-            pointer-events: none;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
         }
 
         .header {
-            margin-top: 30px;
-            z-index: 10;
             text-align: center;
+            padding-top: 10px;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: #5a8ab1;
             margin: 0;
-            letter-spacing: -1px;
+            line-height: 1;
         }
 
         .from-to {
-            font-size: 1.1rem;
-            color: #666;
-            margin-top: 5px;
+            font-size: 1rem;
+            color: #555;
+            margin: 5px 0;
+            font-weight: bold;
         }
 
         .subtitle {
             font-family: 'Shadows Into Light', cursive;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: #444;
-            margin-top: 10px;
+            margin: 0;
         }
 
-        /* Area Foto Menyebar */
-        .scrapbook-area {
+        /* Container Foto */
+        .photo-space {
             position: relative;
-            flex-grow: 1;
             width: 100%;
+            flex-grow: 1; /* Mengambil sisa ruang di tengah */
         }
 
         .polaroid {
             position: absolute;
             background: white;
-            padding: 10px 10px 30px 10px;
-            box-shadow: 5px 10px 20px rgba(0,0,0,0.15);
-            width: 140px; /* Ukuran lebih gede */
-            border: 1px solid #eee;
-            z-index: 2;
+            padding: 8px 8px 25px 8px;
+            box-shadow: 3px 6px 15px rgba(0,0,0,0.2);
+            width: 130px; /* Ukuran pas untuk HP */
+            border: 1px solid #fff;
         }
 
         .polaroid img {
             width: 100%;
-            height: 140px;
+            height: 120px;
             object-fit: cover;
         }
 
-        /* Dekorasi Selotip */
+        /* Tape / Selotip */
         .polaroid::after {
             content: '';
             position: absolute;
             top: -10px;
             left: 30%;
-            width: 50px;
-            height: 20px;
-            background: rgba(173, 196, 206, 0.5);
-            transform: rotate(-3deg);
+            width: 40px;
+            height: 15px;
+            background: rgba(173, 196, 206, 0.6);
+            transform: rotate(-5deg);
         }
 
-        /* Tata Letak Foto Menyebar (Tidak Menumpuk Parah) */
-        .p1 { top: 5%; left: 8%; transform: rotate(-10deg); }
-        .p2 { top: 12%; right: 8%; transform: rotate(8deg); }
-        .p3 { top: 35%; left: 50%; transform: translateX(-50%) rotate(-2deg); width: 160px; }
-        .p4 { bottom: 15%; left: 10%; transform: rotate(-5deg); }
-        .p5 { bottom: 10%; right: 5%; transform: rotate(12deg); }
+        /* Posisi Foto (Diatur agar tidak menumpuk teks) */
+        .p1 { top: 5%; left: 5%; transform: rotate(-10deg); }
+        .p2 { top: 10%; right: 5%; transform: rotate(10deg); }
+        .p3 { top: 35%; left: 50%; transform: translateX(-50%) rotate(2deg); width: 150px; }
+        .p4 { bottom: 10%; left: 8%; transform: rotate(-5deg); }
+        .p5 { bottom: 5%; right: 8%; transform: rotate(12deg); }
 
-        /* Bunga PNG */
+        /* Bunga */
         .flower {
             position: absolute;
-            width: 80px;
-            z-index: 5;
+            width: 70px;
             pointer-events: none;
+            z-index: 3;
         }
-        .f1 { top: 5%; right: 15%; }
-        .f2 { bottom: 20%; left: 5%; }
+        .f1 { top: 0; right: 20%; opacity: 0.8; }
+        .f2 { bottom: 15%; left: 5%; opacity: 0.8; }
 
-        /* Bagian Tombol */
-        .footer-buttons {
-            margin-bottom: 50px;
-            z-index: 10;
-            width: 100%;
+        .footer {
+            padding-bottom: 30px;
             text-align: center;
+            width: 100%;
         }
 
         .btn-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            height: 50px;
+            gap: 15px;
         }
 
         .btn {
-            padding: 10px 35px;
-            font-size: 1.2rem;
+            padding: 12px 30px;
+            font-size: 1.1rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-family: 'Cormorant Garamond', serif;
-            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         #yesBtn { background: #5a8ab1; color: white; }
-        #noBtn { background: #d9a5b3; color: white; position: relative; }
+        #noBtn { background: #d9a5b3; color: white; }
 
         #success-msg {
             display: none;
             font-family: 'Shadows Into Light', cursive;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #5a8ab1;
-            padding: 20px;
+            animation: pop 0.5s ease;
         }
 
+        @keyframes pop {
+            0% { transform: scale(0.5); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>happier</h1>
-        <div class="from-to">from アルファン to ロリタ</div>
-        <p class="subtitle">Will you be my Valentine?</p>
-    </div>
+    <div class="overlay"></div>
 
-    <div class="scrapbook-area">
-        <div class="polaroid p1"><img src="foto1.jpg"></div>
-        <div class="polaroid p2"><img src="foto2.jpg"></div>
-        <div class="polaroid p3"><img src="foto3.jpg"></div>
-        <div class="polaroid p4"><img src="foto4.jpg"></div>
-        <div class="polaroid p5"><img src="foto5.jpg"></div>
-
-        <img src="bunga1.png" class="flower f1" alt="">
-        <img src="bunga2.png" class="flower f2" alt="">
-    </div>
-
-    <div class="footer-buttons">
-        <div id="btnArea" class="btn-container">
-            <button class="btn" id="yesBtn" onclick="showLove()">Yes</button>
-            <button class="btn" id="noBtn" onmouseover="moveNo()">No</button>
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>happier</h1>
+            <div class="from-to">from アルファン to ロリタ</div>
+            <p class="subtitle">Will you be my Valentine?</p>
         </div>
-        <div id="success-msg">Yeay! I love you so much! ❤️</div>
+
+        <div class="photo-space">
+            <div class="polaroid p1"><img src="foto1.jpg"></div>
+            <div class="polaroid p2"><img src="foto2.jpg"></div>
+            <div class="polaroid p3"><img src="foto3.jpg"></div>
+            <div class="polaroid p4"><img src="foto4.jpg"></div>
+            <div class="polaroid p5"><img src="foto5.jpg"></div>
+
+            <img src="bunga1.png" class="flower f1">
+            <img src="bunga2.png" class="flower f2">
+        </div>
+
+        <div class="footer">
+            <div id="btnArea" class="btn-container">
+                <button class="btn" id="yesBtn" onclick="showLove()">Yes</button>
+                <button class="btn" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No</button>
+            </div>
+            <div id="success-msg">Yeay! I love you so much! ❤️</div>
+        </div>
     </div>
 
     <script>
         function moveNo() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
+            // Menghitung batas aman agar tombol tidak lari keluar layar
+            const maxX = window.innerWidth - btn.offsetWidth - 20;
+            const maxY = window.innerHeight - btn.offsetHeight - 20;
+            
+            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+            
             btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+            btn.style.zIndex = "999";
         }
 
         function showLove() {
             document.getElementById('btnArea').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
-            alert("Happy Valentine, Lolita! 🌹");
+            // Menghilangkan foto agar pesan terlihat jelas saat diklik Yes (opsional)
+            // document.querySelector('.photo-space').style.opacity = "0.3";
         }
     </script>
 </body>
