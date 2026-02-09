@@ -12,23 +12,20 @@
             padding: 0;
             background-color: #f4f4f4;
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); 
-            font-family: 'Cormorant Gramond', serif;
+            font-family: 'Cormorant Garamond', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             justify-content: center;
             color: #444;
-            overflow: hidden; /* Mencegah scroll yang tidak perlu */
+            overflow: hidden;
         }
 
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 10px;
             position: relative;
         }
@@ -37,23 +34,22 @@
         .subtitle { font-family: 'Shadows Into Light', cursive; font-size: 1.1rem; margin: 5px 0; color: #777; }
         .signature { font-family: 'Shadows Into Light', cursive; font-size: 0.9rem; margin-bottom: 5px; color: #999; }
 
-        /* Dekorasi Bunga PNG */
+        /* Dekorasi Bunga */
         .flower {
             position: absolute;
-            width: 50px;
-            height: auto;
-            z-index: 10;
-            opacity: 0.8;
+            width: 60px;
+            z-index: 0;
+            opacity: 0.6;
             pointer-events: none;
         }
-        .f1 { top: 20%; left: -10%; transform: rotate(-15deg); }
-        .f2 { bottom: 20%; right: -10%; transform: rotate(15deg); }
+        .f1 { top: 10%; left: -5%; transform: rotate(-15deg); }
+        .f2 { bottom: 15%; right: -5%; transform: rotate(15deg); }
 
         .gallery {
             position: relative;
-            height: 280px; 
+            height: 300px; 
             width: 100%;
-            margin: 15px 0;
+            margin: 10px 0;
         }
 
         .polaroid {
@@ -62,7 +58,7 @@
             padding: 5px 5px 15px 5px;
             box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
             width: 100px;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid #ddd;
             cursor: pointer;
             z-index: 2;
@@ -70,65 +66,62 @@
 
         .polaroid img { width: 100%; height: 100px; object-fit: cover; display: block; }
 
-        /* Tata Letak Awal */
+        /* TATA LETAK AWAL (Favoritmu) */
         .p1 { top: 0%; left: 5%; transform: rotate(-10deg); }
         .p2 { top: 5%; right: 5%; transform: rotate(12deg); }
-        .p3 { top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); width: 110px; z-index: 5;} 
+        .p3 { top: 40%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); width: 115px; z-index: 5;} 
         .p4 { bottom: 0%; left: 5%; transform: rotate(-15deg); }
         .p5 { bottom: 0%; right: 5%; transform: rotate(8deg); }
 
-        /* Tata Letak Setelah YES (Aesthetic Grid) */
-        .gallery.success .p1 { top: 20%; left: 10%; transform: rotate(-5deg); }
-        .gallery.success .p2 { top: 20%; right: 10%; transform: rotate(5deg); }
-        .gallery.success .p3 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(0deg); width: 120px; }
-        .gallery.success .p4 { top: 70%; left: 15%; transform: rotate(-3deg); }
-        .gallery.success .p5 { top: 70%; right: 15%; transform: rotate(3deg); }
+        /* TATA LETAK SETELAH YES (Lebih Rapi & Aesthetic) */
+        .gallery.success .p1 { top: 15%; left: 15%; transform: rotate(-5deg); }
+        .gallery.success .p2 { top: 15%; right: 15%; transform: rotate(5deg); }
+        .gallery.success .p3 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(0deg); width: 125px; }
+        .gallery.success .p4 { top: 75%; left: 20%; transform: rotate(-2deg); }
+        .gallery.success .p5 { top: 75%; right: 20%; transform: rotate(2deg); }
 
         .buttons {
             display: flex;
             justify-content: center;
             gap: 15px;
+            margin-top: 10px;
             height: 50px;
             align-items: center;
-            z-index: 100;
         }
 
         .btn {
             padding: 10px 25px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             border: none;
             cursor: pointer;
             border-radius: 4px;
-            font-family: 'Cormorant Gramond', serif;
+            font-family: 'Cormorant Garamond', serif;
             box-shadow: 2px 3px 6px rgba(0,0,0,0.1);
         }
 
         #yesBtn { background-color: #5a8ab1; color: white; }
-        #noBtn { background-color: #d9a5b3; color: white; position: relative; }
+        #noBtn { background-color: #d9a5b3; color: white; position: relative; z-index: 100; }
 
         #message {
-            margin-top: 15px;
+            margin-top: 10px;
             font-size: 2rem;
             color: #5a8ab1;
             display: none;
             font-family: 'Shadows Into Light', cursive;
-            animation: bounce 1s infinite alternate;
         }
-
-        @keyframes bounce { from { transform: scale(1); } to { transform: scale(1.1); } }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921251.png" class="flower f1" alt="flower">
-        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921251.png" class="flower f2" alt="flower">
+        <img src="https://www.transparentpng.com/download/flower/R6o9K1-flower-clipart-transparent.png" class="flower f1">
+        <img src="https://www.transparentpng.com/download/flower/R6o9K1-flower-clipart-transparent.png" class="flower f2">
 
         <h1 id="mainTitle">Happy Valentine's Day!</h1>
         <p class="subtitle" id="subText">Will you be my Valentine?</p>
         <p class="signature" id="fromTo">from アルファン to ロリタ</p>
 
-        <div class="gallery" id="photoGallery">
+        <div class="gallery" id="gal">
             <div class="polaroid p1"><img src="foto1.jpg" alt="1"></div>
             <div class="polaroid p2"><img src="foto2.jpg" alt="2"></div>
             <div class="polaroid p3"><img src="foto3.jpg" alt="3"></div>
@@ -145,43 +138,28 @@
     </div>
 
     <script>
-        // Fungsi pindah tombol No
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            const padding = 30;
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
-            
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40) + 20;
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40) + 20;
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
-            noBtn.style.zIndex = '999';
         }
 
-        // Fungsi saat klik Yes
         function ansYes() {
-            // Sembunyikan tombol dan teks pendukung
             document.getElementById('btnGroup').style.display = 'none';
             document.getElementById('subText').style.display = 'none';
             document.getElementById('fromTo').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
             
-            // Tampilkan pesan sukses
-            const msg = document.getElementById('message');
-            msg.style.display = 'block';
+            // Mengubah tata letak foto jadi lebih bagus
+            document.getElementById('gal').classList.add('success');
             
-            // Ubah tata letak foto menjadi rapi (Aesthetic)
-            document.getElementById('photoGallery').classList.add('success');
-            
-            // Alert opsional
             setTimeout(() => {
                 alert("Happy Valentine's! 🤍");
-            }, 1000);
+            }, 800);
         }
-
-        // Memastikan halaman bisa direfresh tanpa hang
-        window.onbeforeunload = function() {
-            window.scrollTo(0,0);
-        };
     </script>
 </body>
 </html>
