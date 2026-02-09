@@ -1,144 +1,191 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Lita 🤍</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Shadows+Into+Light&display=swap');
 
-  <!-- Font Mincho -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            /* Tekstur kertas halus */
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); 
+            font-family: 'Cormorant Garamond', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #444;
+        }
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+        .container {
+            max-width: 600px;
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+        }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Noto Serif JP', serif;
+        h1 {
+            font-size: 4.5rem;
+            color: #5a8ab1; /* Biru sesuai gambar */
+            margin-bottom: 5px;
+            font-weight: 500;
+            letter-spacing: -2px;
+        }
 
-      /* GANTI BACKGROUND FOTO DI SINI */
-      background: url("background.jpg") center / cover no-repeat;
+        .subtitle {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: #777;
+        }
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        /* Container Galeri ala Scrapbook */
+        .gallery {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
 
-    .wrapper {
-      width: 100%;
-      max-width: 430px;
-      min-height: 100vh;
-      padding: 20px 16px 24px;
+        .polaroid {
+            position: absolute;
+            background: white;
+            padding: 10px 10px 35px 10px;
+            box-shadow: 3px 5px 15px rgba(0,0,0,0.15);
+            width: 160px;
+            transition: transform 0.3s ease, z-index 0.3s;
+            border: 1px solid #ddd;
+        }
 
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(5px);
+        .polaroid img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+        /* Efek Selotip Kebiruan/Abu-abu */
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 35%;
+            width: 50px;
+            height: 20px;
+            background: rgba(180, 190, 210, 0.4); 
+            backdrop-filter: blur(1px);
+            transform: rotate(-3deg);
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
 
-    /* ===== TEKS ===== */
-    .fromto {
-      text-align: center;
-      font-size: 14px;
-      letter-spacing: 1px;
-      color: #333;
-    }
+        /* Layout Posisi Foto (Disesuaikan agar mirip gambar) */
+        .p1 { top: 10px; left: 5%; transform: rotate(-8deg); }
+        .p2 { top: 0px; right: 5%; transform: rotate(5deg); }
+        .p3 { top: 160px; left: 25%; transform: rotate(2deg); width: 200px; z-index: 5;} /* Foto utama di tengah */
+        .p4 { bottom: 20px; left: 2%; transform: rotate(-12deg); }
+        .p5 { bottom: 0px; right: 10%; transform: rotate(7deg); }
 
-    h1 {
-      text-align: center;
-      font-size: 22px;
-      font-weight: 600;
-      margin: 8px 0 0;
-    }
+        .polaroid:hover {
+            transform: scale(1.1) rotate(0deg);
+            z-index: 100;
+            cursor: pointer;
+        }
 
-    /* ===== ALBUM FOTO (TIDAK NUMPUK) ===== */
-    .album {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin: 20px 0;
-    }
+        /* Tombol Interaktif */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            height: 60px;
+            align-items: center;
+        }
 
-    .polaroid {
-      background: #fff;
-      padding: 10px 10px 32px;
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    }
+        .btn {
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-family: 'Cormorant Garamond', serif;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
 
-    .polaroid img {
-      width: 100%;
-      display: block;
-      border-radius: 6px;
-    }
+        #yesBtn {
+            background-color: #5a8ab1;
+            color: white;
+        }
 
-    /* FOTO TERAKHIR DI TENGAH */
-    .polaroid:last-child {
-      grid-column: span 2;
-      justify-self: center;
-      max-width: 85%;
-    }
+        #noBtn {
+            background-color: #d9a5b3; /* Pink pastel kecokelatan */
+            color: white;
+            position: relative;
+        }
 
-    /* ===== PERTANYAAN ===== */
-    .question {
-      text-align: center;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
+        #message {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #5a8ab1;
+            display: none;
+            font-family: 'Shadows Into Light', cursive;
+            animation: fadeIn 1s;
+        }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-    }
-
-    button {
-      padding: 12px 30px;
-      border-radius: 24px;
-      border: none;
-      font-size: 14px;
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    .yes {
-      background: #f3b5c1;
-    }
-
-    .no {
-      background: #ddd;
-    }
-  </style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="wrapper">
 
-    <div>
-      <div class="fromto">from アルファン to ロリタ</div>
-      <h1>Valentine untukmu</h1>
+    <div class="container">
+        <h1>happier</h1>
+        <p class="subtitle">Will you be my Valentine?</p>
+
+        <div class="gallery">
+            <div class="polaroid p1"><img src="foto1.jpg" alt="Memory 1"></div>
+            <div class="polaroid p2"><img src="foto2.jpg" alt="Memory 2"></div>
+            <div class="polaroid p3"><img src="foto3.jpg" alt="Memory 3"></div>
+            <div class="polaroid p4"><img src="foto4.jpg" alt="Memory 4"></div>
+            <div class="polaroid p5"><img src="foto5.jpg" alt="Memory 5"></div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn" id="yesBtn" onclick="ansYes()">Yes</button>
+            <button class="btn" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No</button>
+        </div>
+
+        <div id="message">I knew you'd say YES! ❤️ See you soon!</div>
     </div>
 
-    <div class="album">
-      <div class="polaroid"><img src="foto1.jpg" alt=""></div>
-      <div class="polaroid"><img src="foto2.jpg" alt=""></div>
-      <div class="polaroid"><img src="foto3.jpg" alt=""></div>
-      <div class="polaroid"><img src="foto4.jpg" alt=""></div>
-      <div class="polaroid"><img src="foto5.jpg" alt=""></div>
-    </div>
+    <script>
+        // Fungsi membuat tombol "No" lari saat didekati/diklik
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
 
-    <div>
-      <div class="question">Mau jadi Valentine-ku?</div>
-      <div class="buttons">
-        <button class="yes">Yes</button>
-        <button class="no">No</button>
-      </div>
-    </div>
-
-  </div>
+        function ansYes() {
+            document.querySelector('.buttons').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
+            document.querySelector('.subtitle').style.display = 'none';
+            
+            // Variasi tambahan: Alert manis
+            setTimeout(() => {
+                alert("You just made my day! Happy Valentine's! ❤️");
+            }, 500);
+        }
+    </script>
 </body>
 </html>
