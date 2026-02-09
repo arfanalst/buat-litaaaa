@@ -16,51 +16,53 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Memusatkan konten secara vertikal */
-            height: 100vh; /* Kunci agar pas satu layar */
-            overflow: hidden; /* Mencegah scroll */
+            min-height: 100vh;
             color: #444;
+            /* Hapus overflow hidden agar bisa refresh tarik bawah */
         }
 
         .container {
             width: 100%;
             max-width: 500px;
             text-align: center;
-            padding: 10px;
-            position: relative;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
-            font-size: 3rem; /* Ukuran lebih kecil */
+            font-size: 3.5rem;
             color: #5a8ab1;
             margin: 0;
             font-weight: 500;
-            letter-spacing: -1px;
         }
 
         .subtitle {
             font-family: 'Shadows Into Light', cursive;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 20px;
             color: #777;
         }
 
-        /* Galeri lebih ringkas */
+        /* Container Galeri */
         .gallery {
             position: relative;
-            height: 320px; /* Tinggi dikurangi agar tombol naik */
+            height: 350px; /* Ruang cukup untuk foto agar tidak menutupi tombol */
             width: 100%;
-            margin: 0 auto 20px auto;
+            margin-bottom: 20px;
         }
 
         .polaroid {
             position: absolute;
             background: white;
-            padding: 8px 8px 25px 8px; /* Padding lebih tipis */
-            box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
-            width: 130px; /* Ukuran foto diperkecil */
-            transition: transform 0.3s ease;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 3px 5px 15px rgba(0,0,0,0.15);
+            width: 130px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid #ddd;
+            cursor: pointer;
+            z-index: 1;
         }
 
         .polaroid img {
@@ -68,51 +70,52 @@
             height: 130px;
             object-fit: cover;
             display: block;
+            pointer-events: none; /* Agar klik fokus ke div polaroid */
         }
 
-        .polaroid::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 30%;
-            width: 40px;
-            height: 15px;
-            background: rgba(180, 190, 210, 0.4); 
-            backdrop-filter: blur(1px);
+        /* Efek saat ditekan/sentuh (Gerak) */
+        .polaroid:active, .polaroid:hover {
+            transform: scale(1.2) rotate(0deg) !important;
+            z-index: 50 !important;
+            box-shadow: 10px 15px 25px rgba(0,0,0,0.2);
         }
 
-        /* Posisi yang lebih rapat agar tidak memakan tempat vertikal */
-        .p1 { top: 10px; left: 5%; transform: rotate(-8deg); }
-        .p2 { top: 0px; right: 5%; transform: rotate(5deg); }
-        .p3 { top: 80px; left: 50%; transform: translateX(-50%) rotate(2deg); width: 160px; z-index: 5;} 
-        .p4 { bottom: 20px; left: 5%; transform: rotate(-12deg); }
-        .p5 { bottom: 10px; right: 8%; transform: rotate(7deg); }
+        /* Layout Posisi Foto agar semua kelihatan */
+        .p1 { top: 10px; left: 5%; transform: rotate(-10deg); }
+        .p2 { top: 0px; right: 5%; transform: rotate(8deg); }
+        .p3 { top: 100px; left: 50%; transform: translateX(-50%) rotate(-2deg); width: 150px; z-index: 5;} 
+        .p4 { bottom: 20px; left: 10%; transform: rotate(-15deg); }
+        .p5 { bottom: 10px; right: 10%; transform: rotate(10deg); }
 
+        /* Tombol */
         .buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
-            height: 50px;
-            align-items: center;
             margin-top: 10px;
+            width: 100%;
+            z-index: 100; /* Pastikan tombol di atas segalanya */
         }
 
         .btn {
-            padding: 10px 30px;
-            font-size: 1.1rem;
+            padding: 12px 35px;
+            font-size: 1.2rem;
             border: none;
             cursor: pointer;
             border-radius: 4px;
             font-family: 'Cormorant Garamond', serif;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
+
+        .btn:active { transform: scale(0.95); }
 
         #yesBtn { background-color: #5a8ab1; color: white; }
         #noBtn { background-color: #d9a5b3; color: white; position: relative; }
 
         #message {
-            margin-top: 10px;
-            font-size: 2rem;
+            margin-top: 20px;
+            font-size: 2.2rem;
             color: #5a8ab1;
             display: none;
             font-family: 'Shadows Into Light', cursive;
@@ -144,19 +147,22 @@
     <script>
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            // Membatasi area lari agar tidak keluar layar
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            // Menghitung batas agar tidak menabrak tepi layar
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
             
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
+            noBtn.style.zIndex = '999';
         }
 
         function ansYes() {
             document.querySelector('.buttons').style.display = 'none';
+            document.querySelector('.gallery').style.display = 'none';
             document.getElementById('message').style.display = 'block';
             document.querySelector('.subtitle').style.display = 'none';
+            
             setTimeout(() => {
                 alert("You just made my day! Happy Valentine's! ❤️");
             }, 500);
