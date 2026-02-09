@@ -2,213 +2,171 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For My Lolita</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Shadows+Into+Light&display=swap');
-
-        * { box-sizing: border-box; }
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Shadows+Into+Light&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100vh;
-            height: -webkit-fill-available; /* Fix untuk browser mobile */
-            overflow: hidden; 
-            background: url('background.jpg') no-repeat center center;
-            background-size: cover;
+            background-color: #e5e5e5;
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* Tekstur kertas */
             font-family: 'Cormorant Garamond', serif;
-            position: relative;
-        }
-
-        /* Overlay halus agar teks terbaca */
-        .overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.15);
-            z-index: 1;
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #444;
         }
 
-        .header {
+        .container {
+            max-width: 600px;
             text-align: center;
-            padding-top: 10px;
+            padding: 50px 20px;
+            position: relative;
         }
 
         h1 {
-            font-size: 2.8rem;
-            color: #5a8ab1;
-            margin: 0;
-            line-height: 1;
-        }
-
-        .from-to {
-            font-size: 1rem;
-            color: #555;
-            margin: 5px 0;
-            font-weight: bold;
+            font-size: 4rem;
+            color: #5a8ab1; /* Warna biru sesuai gambar */
+            margin-bottom: 10px;
+            font-weight: 500;
         }
 
         .subtitle {
             font-family: 'Shadows Into Light', cursive;
             font-size: 1.2rem;
-            color: #444;
-            margin: 0;
+            margin-bottom: 40px;
         }
 
-        /* Container Foto */
-        .photo-space {
+        /* Gaya Polaroid */
+        .gallery {
             position: relative;
+            height: 450px;
             width: 100%;
-            flex-grow: 1; /* Mengambil sisa ruang di tengah */
+            margin-bottom: 50px;
         }
 
         .polaroid {
             position: absolute;
             background: white;
-            padding: 8px 8px 25px 8px;
-            box-shadow: 3px 6px 15px rgba(0,0,0,0.2);
-            width: 130px; /* Ukuran pas untuk HP */
-            border: 1px solid #fff;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 150px;
+            transition: transform 0.3s ease;
         }
 
         .polaroid img {
             width: 100%;
-            height: 120px;
+            height: 150px;
             object-fit: cover;
         }
 
-        /* Tape / Selotip */
-        .polaroid::after {
+        /* Dekorasi Selotip (Washi Tape) */
+        .polaroid::before {
             content: '';
             position: absolute;
-            top: -10px;
+            top: -15px;
             left: 30%;
-            width: 40px;
-            height: 15px;
-            background: rgba(173, 196, 206, 0.6);
+            width: 60px;
+            height: 25px;
+            background: rgba(173, 181, 189, 0.5); /* Warna abu transparan */
             transform: rotate(-5deg);
         }
 
-        /* Posisi Foto (Diatur agar tidak menumpuk teks) */
-        .p1 { top: 5%; left: 5%; transform: rotate(-10deg); }
-        .p2 { top: 10%; right: 5%; transform: rotate(10deg); }
-        .p3 { top: 35%; left: 50%; transform: translateX(-50%) rotate(2deg); width: 150px; }
-        .p4 { bottom: 10%; left: 8%; transform: rotate(-5deg); }
-        .p5 { bottom: 5%; right: 8%; transform: rotate(12deg); }
+        /* Posisi Foto Acak ala Scrapbook */
+        .p1 { top: 0; left: 10%; transform: rotate(-5deg); }
+        .p2 { top: 20px; right: 10%; transform: rotate(8deg); }
+        .p3 { top: 180px; left: 50%; transform: translate(-50%) rotate(-2deg); width: 180px;}
+        .p4 { bottom: 0; left: 5%; transform: rotate(-10deg); }
+        .p5 { bottom: 20px; right: 5%; transform: rotate(5deg); }
 
-        /* Bunga */
-        .flower {
-            position: absolute;
-            width: 70px;
-            pointer-events: none;
-            z-index: 3;
-        }
-        .f1 { top: 0; right: 20%; opacity: 0.8; }
-        .f2 { bottom: 15%; left: 5%; opacity: 0.8; }
-
-        .footer {
-            padding-bottom: 30px;
-            text-align: center;
-            width: 100%;
+        .polaroid:hover {
+            transform: scale(1.1) rotate(0deg);
+            z-index: 10;
         }
 
-        .btn-container {
+        /* Tombol */
+        .buttons {
+            margin-top: 30px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
+            height: 50px;
         }
 
         .btn {
-            padding: 12px 30px;
-            font-size: 1.1rem;
+            padding: 10px 30px;
+            font-size: 1.2rem;
             border: none;
-            border-radius: 8px;
             cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
             font-family: 'Cormorant Garamond', serif;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        #yesBtn { background: #5a8ab1; color: white; }
-        #noBtn { background: #d9a5b3; color: white; }
+        #yesBtn {
+            background-color: #5a8ab1;
+            color: white;
+        }
 
-        #success-msg {
+        #noBtn {
+            background-color: #db7093;
+            color: white;
+            position: relative;
+        }
+
+        #message {
+            margin-top: 30px;
+            font-size: 2rem;
+            color: #5a8ab1;
             display: none;
             font-family: 'Shadows Into Light', cursive;
-            font-size: 1.8rem;
-            color: #5a8ab1;
-            animation: pop 0.5s ease;
-        }
-
-        @keyframes pop {
-            0% { transform: scale(0.5); }
-            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <div class="overlay"></div>
+    <div class="container">
+        <h1>happier</h1>
+        <p class="subtitle">Will you be my Valentine?</p>
 
-    <div class="content-wrapper">
-        <div class="header">
-            <h1>happier</h1>
-            <div class="from-to">from アルファン to ロリタ</div>
-            <p class="subtitle">Will you be my Valentine?</p>
+        <div class="gallery">
+            <div class="polaroid p1"><img src="https://via.placeholder.com/150" alt="Foto 1"></div>
+            <div class="polaroid p2"><img src="https://via.placeholder.com/150" alt="Foto 2"></div>
+            <div class="polaroid p3"><img src="https://via.placeholder.com/180" alt="Foto 3"></div>
+            <div class="polaroid p4"><img src="https://via.placeholder.com/150" alt="Foto 4"></div>
+            <div class="polaroid p5"><img src="https://via.placeholder.com/150" alt="Foto 5"></div>
         </div>
 
-        <div class="photo-space">
-            <div class="polaroid p1"><img src="foto1.jpg"></div>
-            <div class="polaroid p2"><img src="foto2.jpg"></div>
-            <div class="polaroid p3"><img src="foto3.jpg"></div>
-            <div class="polaroid p4"><img src="foto4.jpg"></div>
-            <div class="polaroid p5"><img src="foto5.jpg"></div>
-
-            <img src="bunga1.png" class="flower f1">
-            <img src="bunga2.png" class="flower f2">
+        <div class="buttons">
+            <button class="btn" id="yesBtn" onclick="ansYes()">Yes</button>
+            <button class="btn" id="noBtn" onmouseover="moveNo()">No</button>
         </div>
 
-        <div class="footer">
-            <div id="btnArea" class="btn-container">
-                <button class="btn" id="yesBtn" onclick="showLove()">Yes</button>
-                <button class="btn" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No</button>
-            </div>
-            <div id="success-msg">Yeay! I love you so much! ❤️</div>
-        </div>
+        <div id="message">Yay! See you on Feb 14th! ❤️</div>
     </div>
 
     <script>
         function moveNo() {
-            const btn = document.getElementById('noBtn');
-            // Menghitung batas aman agar tombol tidak lari keluar layar
-            const maxX = window.innerWidth - btn.offsetWidth - 20;
-            const maxY = window.innerHeight - btn.offsetHeight - 20;
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             
-            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
-            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
-            
-            btn.style.position = 'fixed';
-            btn.style.left = randomX + 'px';
-            btn.style.top = randomY + 'px';
-            btn.style.zIndex = "999";
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
         }
 
-        function showLove() {
-            document.getElementById('btnArea').style.display = 'none';
-            document.getElementById('success-msg').style.display = 'block';
-            // Menghilangkan foto agar pesan terlihat jelas saat diklik Yes (opsional)
-            // document.querySelector('.photo-space').style.opacity = "0.3";
+        function ansYes() {
+            document.querySelector('.buttons').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
+            document.querySelector('.subtitle').style.display = 'none';
+            
+            // Efek Konfeti Sederhana
+            alert("I love you! ❤️");
         }
     </script>
 </body>
