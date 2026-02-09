@@ -11,134 +11,111 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            /* Tekstur kertas halus */
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); 
             font-family: 'Cormorant Garamond', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
+            justify-content: center; /* Memusatkan konten secara vertikal */
+            height: 100vh; /* Kunci agar pas satu layar */
+            overflow: hidden; /* Mencegah scroll */
             color: #444;
         }
 
         .container {
-            max-width: 600px;
+            width: 100%;
+            max-width: 500px;
             text-align: center;
-            padding: 50px 20px;
+            padding: 10px;
             position: relative;
         }
 
         h1 {
-            font-size: 4.5rem;
-            color: #5a8ab1; /* Biru sesuai gambar */
-            margin-bottom: 5px;
+            font-size: 3rem; /* Ukuran lebih kecil */
+            color: #5a8ab1;
+            margin: 0;
             font-weight: 500;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
         }
 
         .subtitle {
             font-family: 'Shadows Into Light', cursive;
-            font-size: 1.3rem;
-            margin-bottom: 40px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
             color: #777;
         }
 
-        /* Container Galeri ala Scrapbook */
+        /* Galeri lebih ringkas */
         .gallery {
             position: relative;
-            height: 500px;
+            height: 320px; /* Tinggi dikurangi agar tombol naik */
             width: 100%;
-            margin-bottom: 30px;
+            margin: 0 auto 20px auto;
         }
 
         .polaroid {
             position: absolute;
             background: white;
-            padding: 10px 10px 35px 10px;
-            box-shadow: 3px 5px 15px rgba(0,0,0,0.15);
-            width: 160px;
-            transition: transform 0.3s ease, z-index 0.3s;
+            padding: 8px 8px 25px 8px; /* Padding lebih tipis */
+            box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
+            width: 130px; /* Ukuran foto diperkecil */
+            transition: transform 0.3s ease;
             border: 1px solid #ddd;
         }
 
         .polaroid img {
             width: 100%;
-            height: 160px;
+            height: 130px;
             object-fit: cover;
             display: block;
         }
 
-        /* Efek Selotip Kebiruan/Abu-abu */
         .polaroid::before {
             content: '';
             position: absolute;
-            top: -12px;
-            left: 35%;
-            width: 50px;
-            height: 20px;
+            top: -10px;
+            left: 30%;
+            width: 40px;
+            height: 15px;
             background: rgba(180, 190, 210, 0.4); 
             backdrop-filter: blur(1px);
-            transform: rotate(-3deg);
-            box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
         }
 
-        /* Layout Posisi Foto (Disesuaikan agar mirip gambar) */
+        /* Posisi yang lebih rapat agar tidak memakan tempat vertikal */
         .p1 { top: 10px; left: 5%; transform: rotate(-8deg); }
         .p2 { top: 0px; right: 5%; transform: rotate(5deg); }
-        .p3 { top: 160px; left: 25%; transform: rotate(2deg); width: 200px; z-index: 5;} /* Foto utama di tengah */
-        .p4 { bottom: 20px; left: 2%; transform: rotate(-12deg); }
-        .p5 { bottom: 0px; right: 10%; transform: rotate(7deg); }
+        .p3 { top: 80px; left: 50%; transform: translateX(-50%) rotate(2deg); width: 160px; z-index: 5;} 
+        .p4 { bottom: 20px; left: 5%; transform: rotate(-12deg); }
+        .p5 { bottom: 10px; right: 8%; transform: rotate(7deg); }
 
-        .polaroid:hover {
-            transform: scale(1.1) rotate(0deg);
-            z-index: 100;
-            cursor: pointer;
-        }
-
-        /* Tombol Interaktif */
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            height: 60px;
+            gap: 20px;
+            height: 50px;
             align-items: center;
+            margin-top: 10px;
         }
 
         .btn {
-            padding: 12px 35px;
-            font-size: 1.3rem;
+            padding: 10px 30px;
+            font-size: 1.1rem;
             border: none;
             cursor: pointer;
             border-radius: 4px;
-            transition: all 0.2s ease;
             font-family: 'Cormorant Garamond', serif;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
 
-        #yesBtn {
-            background-color: #5a8ab1;
-            color: white;
-        }
-
-        #noBtn {
-            background-color: #d9a5b3; /* Pink pastel kecokelatan */
-            color: white;
-            position: relative;
-        }
+        #yesBtn { background-color: #5a8ab1; color: white; }
+        #noBtn { background-color: #d9a5b3; color: white; position: relative; }
 
         #message {
-            margin-top: 20px;
-            font-size: 2.5rem;
+            margin-top: 10px;
+            font-size: 2rem;
             color: #5a8ab1;
             display: none;
             font-family: 'Shadows Into Light', cursive;
-            animation: fadeIn 1s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
     </style>
 </head>
@@ -149,11 +126,11 @@
         <p class="subtitle">Will you be my Valentine?</p>
 
         <div class="gallery">
-            <div class="polaroid p1"><img src="foto1.jpg" alt="Memory 1"></div>
-            <div class="polaroid p2"><img src="foto2.jpg" alt="Memory 2"></div>
-            <div class="polaroid p3"><img src="foto3.jpg" alt="Memory 3"></div>
-            <div class="polaroid p4"><img src="foto4.jpg" alt="Memory 4"></div>
-            <div class="polaroid p5"><img src="foto5.jpg" alt="Memory 5"></div>
+            <div class="polaroid p1"><img src="foto1.jpg" alt="1"></div>
+            <div class="polaroid p2"><img src="foto2.jpg" alt="2"></div>
+            <div class="polaroid p3"><img src="foto3.jpg" alt="3"></div>
+            <div class="polaroid p4"><img src="foto4.jpg" alt="4"></div>
+            <div class="polaroid p5"><img src="foto5.jpg" alt="5"></div>
         </div>
 
         <div class="buttons">
@@ -161,13 +138,13 @@
             <button class="btn" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No</button>
         </div>
 
-        <div id="message">I knew you'd say YES! ❤️ See you soon!</div>
+        <div id="message">I knew you'd say YES! ❤️</div>
     </div>
 
     <script>
-        // Fungsi membuat tombol "No" lari saat didekati/diklik
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
+            // Membatasi area lari agar tidak keluar layar
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             
@@ -180,8 +157,6 @@
             document.querySelector('.buttons').style.display = 'none';
             document.getElementById('message').style.display = 'block';
             document.querySelector('.subtitle').style.display = 'none';
-            
-            // Variasi tambahan: Alert manis
             setTimeout(() => {
                 alert("You just made my day! Happy Valentine's! ❤️");
             }, 500);
