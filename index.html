@@ -10,111 +10,115 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
+            background-color: #f4f4f4;
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); 
             font-family: 'Cormorant Garamond', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
-            justify-content: center;
+            min-height: 100vh;
             color: #444;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .container {
-            width: 95%;
-            max-width: 400px;
+            width: 100%;
+            max-width: 600px;
             text-align: center;
-            z-index: 10;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 3.2rem;
             color: #5a8ab1;
-            margin: 0;
-            letter-spacing: 1px;
+            margin: 10px 0 0 0;
+            font-weight: 500;
         }
 
         .subtitle {
             font-family: 'Shadows Into Light', cursive;
             font-size: 1.2rem;
-            margin: 5px 0;
+            margin-bottom: 5px;
             color: #777;
         }
 
         .signature {
             font-family: 'Shadows Into Light', cursive;
             font-size: 1rem;
-            color: #aaa;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            color: #999;
         }
 
-        /* Galeri dengan tata letak lebih rapi */
         .gallery {
             position: relative;
-            height: 320px; 
+            height: 450px; 
             width: 100%;
-            margin: 10px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin-bottom: 20px;
+            pointer-events: none; /* Lapisan galeri tembus pandang... */
         }
 
         .polaroid {
             position: absolute;
             background: white;
-            padding: 6px 6px 20px 6px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            width: 110px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #eee;
+            padding: 8px 8px 25px 8px;
+            box-shadow: 3px 5px 15px rgba(0,0,0,0.12);
+            width: 130px;
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
             cursor: pointer;
-            pointer-events: auto; /* Pastikan bisa ditekan */
+            pointer-events: auto; /* ...tapi fotonya tetap bisa ditekan */
+            z-index: 2;
         }
 
         .polaroid img {
             width: 100%;
-            height: 110px;
+            height: 130px;
             object-fit: cover;
             display: block;
         }
 
-        /* Tata letak aesthetic (menyebar tapi tidak menutupi tombol) */
-        .p1 { top: 5%; left: 5%; transform: rotate(-12deg); z-index: 1; }
-        .p2 { top: 0%; right: 5%; transform: rotate(10deg); z-index: 2; }
-        .p3 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-2deg); width: 125px; z-index: 5; } 
-        .p4 { bottom: 5%; left: 8%; transform: rotate(-8deg); z-index: 3; }
-        .p5 { bottom: 2%; right: 2%; transform: rotate(15deg); z-index: 4; }
-
-        .polaroid:hover {
-            transform: scale(1.2) rotate(0deg) !important;
-            z-index: 100 !important;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        .polaroid:hover, .polaroid:active {
+            transform: scale(1.15) rotate(0deg) !important;
+            z-index: 50 !important;
+            box-shadow: 5px 10px 20px rgba(0,0,0,0.2);
         }
+
+        /* Tata letak favoritmu */
+        .p1 { top: 0%; left: 0%; transform: rotate(-10deg); }
+        .p2 { top: 5%; right: 0%; transform: rotate(12deg); }
+        .p3 { top: 35%; left: 50%; transform: translateX(-50%) rotate(2deg); width: 150px; z-index: 5;} 
+        .p4 { bottom: 5%; left: -2%; transform: rotate(-15deg); }
+        .p5 { bottom: 0%; right: -2%; transform: rotate(8deg); }
 
         .buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-top: 15px;
-            height: 50px;
+            margin-top: 10px;
+            width: 100%;
+            height: 60px;
             align-items: center;
+            position: relative;
+            z-index: 10; /* Tombol berada di paling atas */
         }
 
         .btn {
-            padding: 10px 30px;
+            padding: 12px 30px;
             font-size: 1.1rem;
             border: none;
             cursor: pointer;
-            border-radius: 50px; /* Lebih rounded agar aesthetic */
+            border-radius: 4px;
             font-family: 'Cormorant Garamond', serif;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: 0.3s;
+            box-shadow: 2px 3px 6px rgba(0,0,0,0.1);
+            transition: 0.2s;
         }
 
         #yesBtn { background-color: #5a8ab1; color: white; }
-        #noBtn { background-color: #d9a5b3; color: white; transition: none; }
+        #noBtn { background-color: #d9a5b3; color: white; }
 
         #message {
             margin-top: 15px;
@@ -122,7 +126,10 @@
             color: #5a8ab1;
             display: none;
             font-family: 'Shadows Into Light', cursive;
+            animation: fadeIn 0.8s;
         }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -133,11 +140,11 @@
         <p class="signature" id="fromTo">from アルファン to ロリタ</p>
 
         <div class="gallery">
-            <div class="polaroid p1"><img src="foto1.jpg" alt="1"></div>
-            <div class="polaroid p2"><img src="foto2.jpg" alt="2"></div>
-            <div class="polaroid p3"><img src="foto3.jpg" alt="3"></div>
-            <div class="polaroid p4"><img src="foto4.jpg" alt="4"></div>
-            <div class="polaroid p5"><img src="foto5.jpg" alt="5"></div>
+            <div class="polaroid p1" onclick="focusImg(this)"><img src="foto1.jpg" alt="1"></div>
+            <div class="polaroid p2" onclick="focusImg(this)"><img src="foto2.jpg" alt="2"></div>
+            <div class="polaroid p3" onclick="focusImg(this)"><img src="foto3.jpg" alt="3"></div>
+            <div class="polaroid p4" onclick="focusImg(this)"><img src="foto4.jpg" alt="4"></div>
+            <div class="polaroid p5" onclick="focusImg(this)"><img src="foto5.jpg" alt="5"></div>
         </div>
 
         <div class="buttons" id="btnGroup">
@@ -149,11 +156,17 @@
     </div>
 
     <script>
+        function focusImg(el) {
+            // Memberikan efek klik pada foto
+            el.style.zIndex = "100";
+            setTimeout(() => { el.style.zIndex = ""; }, 2000);
+        }
+
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            // Area lari tombol tetap di dalam viewport
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40) + 20;
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40) + 20;
+            const padding = 50;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
             
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
@@ -166,7 +179,6 @@
             document.getElementById('message').style.display = 'block';
             document.getElementById('subText').style.display = 'none';
             document.getElementById('fromTo').style.display = 'none';
-            document.getElementById('mainTitle').innerText = "Yay! ❤️";
             
             setTimeout(() => {
                 alert("Happy Valentine's! 🤍");
